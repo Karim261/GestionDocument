@@ -1,4 +1,4 @@
-package com.insurance.controller;
+package com.gestion.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.insurance.Constants;
-import com.insurance.model.Document;
-import com.insurance.repository.DocumentRepository;
+import com.gestion.Constants;
+import com.gestion.model.Document;
+import com.gestion.repository.DocumentRepository;
+import com.gestion.repository.UtilisateurRepository;
+//import com.gestion.repository.Type_documentRepository;
+//import com.gestion.repository.LabelRepository;
+//import com.gestion.repository.CategorieRepository;
 
 import org.springframework.*;
 
@@ -22,6 +26,18 @@ public class DocumentController {
 
 	@Autowired
 	private DocumentRepository documentRepository;
+	
+	@Autowired
+	private UtilisateurRepository utilisateurRepository;
+	
+//	@Autowired
+//	private Type_documentRepository type_documentRepository;
+//	
+//	@Autowired
+//	private LabelRepository labelRepository;
+//	
+//	@Autowired
+//	private CategorieRepository categorieRepository;
 		
 	@GetMapping("/documents")
 	public String showDocumentList(Model model) {

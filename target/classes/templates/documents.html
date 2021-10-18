@@ -34,7 +34,12 @@
 				<thead class="thead-dark">
 					<tr>
 						<th style="vertical-align: middle;"><a th:href="@{'/documents/page/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">ID</a></th>
-						<th style="vertical-align: middle;"><a th:href="@{'/documents/page/' + ${currentPage} + '?sortField=nomDocument&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Nom d'document</a></th>
+						<th style="vertical-align: middle;"><a th:href="@{'/documents/page/' + ${currentPage} + '?sortField=nomDocument&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Nom</a></th>
+						<th style="vertical-align: middle;"><a th:href="@{'/documents/page/' + ${currentPage} + '?sortField=nomDocument&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Derniere Date Modification</a></th>
+						<th style="vertical-align: middle;"><a th:href="@{'/documents/page/' + ${currentPage} + '?sortField=nomDocument&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Taille Document</a></th>
+						<th style="vertical-align: middle;"><a th:href="@{'/documents/page/' + ${currentPage} + '?sortField=nomDocument&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Version</a></th>
+						<th style="vertical-align: middle;"><a th:href="@{'/documents/page/' + ${currentPage} + '?sortField=nomDocument&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Document Prive</a></th>
+						<th style="vertical-align: middle;"><a th:href="@{'/documents/page/' + ${currentPage} + '?sortField=nomDocument&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Approuve Par</a></th>
 						<th><a th:href="@{/documents/new}" class="btn btn-primary"><span class="spinner-grow spinner-grow-sm"></span> New</a></th>
 					</tr>
 				</thead>
@@ -42,7 +47,12 @@
 					<th:block th:each="document : ${listDocuments}">
 						<tr>
 							<td>[[${document.id}]]</td>
-							<td>[[${document.nomDocument}]]</td>
+							<td>[[${document.nom}]]</td>
+							<td>[[${document.derniere_date_modification}]]</td>
+							<td>[[${document.taille_document}]]</td>
+							<td>[[${document.version}]]</td>
+							<td>[[${document.document_prive}]]</td>
+							<td>[[${document.approuve_par}]]</td>
 							<td>
 								<a th:href="@{'/documents/edit/' + ${document.id}}" class="btn btn-primary"><i class="fas fa-pen"></i> Edit</a>
 								&nbsp;&nbsp;

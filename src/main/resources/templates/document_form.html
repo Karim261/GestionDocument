@@ -22,12 +22,42 @@
 			<input type="hidden" th:field="*{id}" th:value="${document.id}">
 			<div class="m-3">
 				<div class="form-group row">
-					<label class="col-form-label col-sm-4">Nom Document: </label>
+					<label class="col-form-label col-sm-4">Nom: </label>
 					<div class="col-sm-8">
-						<input type="text" th:field="*{nomDocument}" class="form-control" required>
+						<input type="text" th:field="*{nom}" class="form-control" required>
 					</div>
 				</div>
-				
+								<div class="form-group row">
+					<label class="col-form-label col-sm-4">Derniere Date Modification: </label>
+					<div class="col-sm-8">
+						<input type="date" th:field="*{derniere_date_modification}" class="form-control" required>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-form-label col-sm-4">Taille Document: </label>
+					<div class="col-sm-8">
+						<input type="number" th:field="*{taille_document}" class="form-control" required>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-form-label col-sm-4">Version: </label>
+					<div class="col-sm-8">
+						<input type="number" step="0.1" th:field="*{version}" class="form-control" required>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-form-label col-sm-4">Document Prive: </label>
+					<div class="col-sm-8">
+						<input type="number" step="0.1" th:field="*{document_prive}" class="form-control" required>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-form-label col-sm-4">Approuve Par: </label>
+					<div class="col-sm-8">
+						<input type="text" step="0.1" th:field="*{approuve_par}" class="form-control" required>
+					</div>
+				</div>
+
 				<div class="text-center p-3">
 					<button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
 				</div>
