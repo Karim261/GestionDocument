@@ -1,4 +1,4 @@
-package com.insurance.controller;
+package com.gestion.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.insurance.Constants;
-import com.insurance.model.Utilisateur;
-import com.insurance.repository.UtilisateurRepository;
+import com.gestion.Constants;
+import com.gestion.model.Utilisateur;
+import com.gestion.repository.UtilisateurRepository;
 
 import org.springframework.*;
 

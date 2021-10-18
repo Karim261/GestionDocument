@@ -1,4 +1,4 @@
-package com.insurance.model;
+package com.gestion.model;
 
 import java.sql.Date;
 import java.util.ArrayList;
