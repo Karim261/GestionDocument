@@ -86,7 +86,7 @@ public TypeDocument() {}
 
 	@Override
 	public String toString() {
-		return "Document " +
+		return "TypeDocument " +
 				"[id=" + id +
 				", nom=" + nom +
 				", suffixe=" + suffixe +
