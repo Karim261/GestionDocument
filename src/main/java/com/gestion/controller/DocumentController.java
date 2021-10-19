@@ -1,5 +1,7 @@
 package com.gestion.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gestion.Constants;
 import com.gestion.model.Document;
+import com.gestion.model.TypeDocument;
 import com.gestion.repository.DocumentRepository;
 import com.gestion.repository.UtilisateurRepository;
-//import com.gestion.repository.TypeDocumentRepository;
+import com.gestion.repository.TypeDocumentRepository;
 import com.gestion.repository.LabelRepository;
 import com.gestion.repository.CategorieRepository;
 
@@ -34,8 +37,8 @@ public class DocumentController {
 	@Autowired
 	private CategorieRepository categorieRepository;
 	
-//	@Autowired
-//	private TypeDocumentRepository typeDocumentRepository;
+	@Autowired
+	private TypeDocumentRepository typeDocumentRepository;
 
 	@GetMapping("/documents")
 	public String showDocumentList(Model model) {
@@ -63,11 +66,15 @@ public class DocumentController {
 	public String showCreateNewDocumentForm(Model model) {
 		model.addAttribute("document", new Document());
 		model.addAttribute("listLabels", labelRepository.findAll());
+		model.addAttribute("listTypeDocuments", typeDocumentRepository.findAll());
 		return "document_form";
 	}
 
 	@PostMapping("/documents/save")
-	public String saveDocument(Document document) {
+	public String saveDocument(Document document, HttpServletRequest request) {
+		int last = typeDocumentRepository.findAll().size();
+		TypeDocument p = typeDocumentRepository.findAll().get(last-1);
+		document.setTypeDocument(p);
 		documentRepository.save(document);
 		return "redirect:/documents";
 	}
@@ -80,7 +87,7 @@ public class DocumentController {
 	}
 
 	@GetMapping("/documents/delete/{id}")
-	public String deleteDocument(@PathVariable Integer id) {
+	public String deleteDocument(@PathVariable Integer id, Model model) {
 		documentRepository.deleteById(id);
 		return "redirect:/documents";
 	}

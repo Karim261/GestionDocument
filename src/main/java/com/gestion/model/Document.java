@@ -39,19 +39,27 @@ public class Document {
 	@Column(nullable = false, columnDefinition = "nvarchar(45)")
 	private String approuve_par;
 
-//	@ManyToOne
-//	@JoinColumn(name = "type_document_id")
-//	private Type_document type_document;
 	
 	@ManyToMany
 	@JoinTable(name = "Document_Label", joinColumns = @JoinColumn(name = "document_id"), inverseJoinColumns = @JoinColumn(name = "label_id"))
 	private Set<Label> labels = new HashSet<Label>();
+	
+	@ManyToOne
+	@JoinColumn(name = "typeDocument_id")
+	private TypeDocument typeDocument;
 
+	public TypeDocument getTypeDocument() {
+		return typeDocument;
+	}
+
+	public void setTypeDocument(TypeDocument typeDocument) {
+		this.typeDocument = typeDocument;
+	}
 
 public Document() {}
 
 	public Document(Integer id, String nom, Date derniere_date_modification, Long taille_document, Integer version, Byte document_prive,
-						String approuve_par) {  //String approuve_par, Document_type document_type) {
+						String approuve_par,TypeDocument typeDocument) {  
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -60,7 +68,7 @@ public Document() {}
 		this.version = version;
 		this.document_prive = document_prive;
 		this.approuve_par = approuve_par;
-		//this.document_type = document_type;
+		this.typeDocument = typeDocument;
 	}
 
 
