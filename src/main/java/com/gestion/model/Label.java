@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Categorie {
+public class Label {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +17,9 @@ public class Categorie {
 	private String nom;
 
 
-public Categorie() {}
+public Label() {}
 
-	public Categorie(Integer id, String nom) {  
+	public Label(Integer id, String nom) {  
 		super();
 		this.id = id;
 		this.nom = nom;

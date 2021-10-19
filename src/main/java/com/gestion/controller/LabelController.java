@@ -12,16 +12,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gestion.Constants;
-import com.gestion.model.Categorie;
-import com.gestion.repository.CategorieRepository;
+import com.gestion.model.Label;
+import com.gestion.repository.LabelRepository;
 import com.gestion.repository.UtilisateurRepository;
-
+//import com.gestion.repository.TypeDocumentRepository;
+//import com.gestion.repository.LabelRepository;
+//import com.gestion.repository.LabelRepository;
 
 @Controller
-public class CategorieController {
+public class LabelController {
 
 	@Autowired
-	private CategorieRepository categorieRepository;
+	private LabelRepository labelRepository;
 
 //	@Autowired
 //	private TypeDocumentRepository typeDocumentRepository;
@@ -30,51 +32,51 @@ public class CategorieController {
 //	private LabelRepository labelRepository;
 //
 //	@Autowired
-//	private CategorieRepository categorieRepository;
+//	private LabelRepository labelRepository;
 
-	@GetMapping("/categories")
-	public String showCategorieList(Model model) {
+	@GetMapping("/labels")
+	public String showLabelList(Model model) {
 		return listByPage(model, 1, "id", "asc", "");
 	}
 
-	@GetMapping("/categories/page/{pageNumber}")
+	@GetMapping("/labels/page/{pageNumber}")
 	public String listByPage(Model model, @PathVariable int pageNumber, @RequestParam String sortField, @RequestParam String sortDir, @RequestParam String keyword){
 		Sort sort = Sort.by(sortField);
 		sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
-		Page<Categorie> page = categorieRepository.findAll(keyword, PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sort));
+		Page<Label> page = labelRepository.findAll(keyword, PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sort));
 
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", page.getTotalPages());
-		model.addAttribute("listCategories", page.getContent());
+		model.addAttribute("listLabels", page.getContent());
 		model.addAttribute("sortField", sortField);
 		model.addAttribute("sortDir", sortDir);
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 		model.addAttribute("keyword", keyword);
 
-		return "categories";
+		return "labels";
 	}
 
-	@GetMapping("/categories/new")
-	public String showCreateNewCategorieForm(Model model) {
-		model.addAttribute("categorie", new Categorie());
-		return "categorie_form";
+	@GetMapping("/labels/new")
+	public String showCreateNewLabelForm(Model model) {
+		model.addAttribute("label", new Label());
+		return "label_form";
 	}
 
-	@PostMapping("/categories/save")
-	public String saveCategorie(Categorie categorie) {
-		categorieRepository.save(categorie);
-		return "redirect:/categories";
+	@PostMapping("/labels/save")
+	public String saveLabel(Label label) {
+		labelRepository.save(label);
+		return "redirect:/labels";
 	}
 
-	@GetMapping("/categories/edit/{id}")
-	public String showCreateNewCategorieForm(@PathVariable Integer id, Model model) {
-		model.addAttribute("categorie", categorieRepository.findById(id).get());
-		return "categorie_form";
+	@GetMapping("/labels/edit/{id}")
+	public String showCreateNewLabelForm(@PathVariable Integer id, Model model) {
+		model.addAttribute("label", labelRepository.findById(id).get());
+		return "label_form";
 	}
 
-	@GetMapping("/categories/delete/{id}")
-	public String deleteCategorie(@PathVariable Integer id) {
-		categorieRepository.deleteById(id);
-		return "redirect:/categories";
+	@GetMapping("/labels/delete/{id}")
+	public String deleteLabel(@PathVariable Integer id) {
+		labelRepository.deleteById(id);
+		return "redirect:/labels";
 	}
 }
