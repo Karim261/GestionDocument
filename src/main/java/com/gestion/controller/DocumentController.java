@@ -15,9 +15,9 @@ import com.gestion.Constants;
 import com.gestion.model.Document;
 import com.gestion.repository.DocumentRepository;
 import com.gestion.repository.UtilisateurRepository;
-//import com.gestion.repository.Type_documentRepository;
-//import com.gestion.repository.LabelRepository;
-//import com.gestion.repository.CategorieRepository;
+//import com.gestion.repository.TypeDocumentRepository;
+import com.gestion.repository.LabelRepository;
+import com.gestion.repository.CategorieRepository;
 
 @Controller
 public class DocumentController {
@@ -27,15 +27,15 @@ public class DocumentController {
 
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
+	
+	@Autowired
+	private LabelRepository labelRepository;
 
+	@Autowired
+	private CategorieRepository categorieRepository;
+	
 //	@Autowired
-//	private Type_documentRepository type_documentRepository;
-//
-//	@Autowired
-//	private LabelRepository labelRepository;
-//
-//	@Autowired
-//	private CategorieRepository categorieRepository;
+//	private TypeDocumentRepository typeDocumentRepository;
 
 	@GetMapping("/documents")
 	public String showDocumentList(Model model) {
@@ -62,6 +62,7 @@ public class DocumentController {
 	@GetMapping("/documents/new")
 	public String showCreateNewDocumentForm(Model model) {
 		model.addAttribute("document", new Document());
+		model.addAttribute("listLabels", labelRepository.findAll());
 		return "document_form";
 	}
 
@@ -74,6 +75,7 @@ public class DocumentController {
 	@GetMapping("/documents/edit/{id}")
 	public String showCreateNewDocumentForm(@PathVariable Integer id, Model model) {
 		model.addAttribute("document", documentRepository.findById(id).get());
+		model.addAttribute("listLabels", labelRepository.findAll());
 		return "document_form";
 	}
 

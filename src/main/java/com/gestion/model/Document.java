@@ -2,11 +2,17 @@ package com.gestion.model;
 
 import java.sql.Date;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Document {
@@ -36,6 +42,10 @@ public class Document {
 //	@ManyToOne
 //	@JoinColumn(name = "type_document_id")
 //	private Type_document type_document;
+	
+	@ManyToMany
+	@JoinTable(name = "Document_Label", joinColumns = @JoinColumn(name = "document_id"), inverseJoinColumns = @JoinColumn(name = "label_id"))
+	private Set<Label> labels = new HashSet<Label>();
 
 
 public Document() {}
@@ -110,7 +120,21 @@ public Document() {}
 		this.approuve_par = approuve_par;
 	}
 
+	public Set<Label> getLabels() {
+		return labels;
+	}
 
+	public void setLabels(Set<Label> labels) {
+		this.labels = labels;
+	}
+
+	public void addLabel(Label label) {
+		labels.add(label);
+	}
+	
+	public void removeLabel(Label label) {
+		labels.remove(label);
+	}
 
 	@Override
 	public String toString() {
