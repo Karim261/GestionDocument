@@ -59,11 +59,11 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-form-label col-sm-4">TypeDocument Id: </label>
+					<label class="col-form-label col-sm-4">Document Suffixe: </label>
 					<div class="col-sm-8">
 						<select th:field="*{typeDocument}" class="form-control" required>
 							<th:block th:each="typeDocument : ${listTypeDocuments}">
-								<option th:text="${typeDocument.id}" th:value="${id}"/>
+								<option th:text="${typeDocument.suffixe}" th:value="${suffixe}"/>
 							</th:block>
 						</select>
 					</div>
