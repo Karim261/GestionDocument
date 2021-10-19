@@ -3,6 +3,7 @@ package com.gestion.securingweb;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -21,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
-				.loginPage("/login")
+				//.loginPage("/login")
 				.permitAll()
 				.and()
 			.logout()
@@ -40,4 +41,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		return new InMemoryUserDetailsManager(user);
 	}
+	
+	//Flo rends les ressources statiques accessibles
+	@Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+    }
 }
