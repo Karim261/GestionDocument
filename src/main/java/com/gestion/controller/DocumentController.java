@@ -19,26 +19,24 @@ import com.gestion.repository.UtilisateurRepository;
 //import com.gestion.repository.LabelRepository;
 //import com.gestion.repository.CategorieRepository;
 
-import org.springframework.*;
-
 @Controller
 public class DocumentController {
 
 	@Autowired
 	private DocumentRepository documentRepository;
-	
+
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
-	
+
 //	@Autowired
 //	private Type_documentRepository type_documentRepository;
-//	
+//
 //	@Autowired
 //	private LabelRepository labelRepository;
-//	
+//
 //	@Autowired
 //	private CategorieRepository categorieRepository;
-		
+
 	@GetMapping("/documents")
 	public String showDocumentList(Model model) {
 		return listByPage(model, 1, "id", "asc", "");
@@ -49,7 +47,7 @@ public class DocumentController {
 		Sort sort = Sort.by(sortField);
 		sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
 		Page<Document> page = documentRepository.findAll(keyword, PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sort));
-		
+
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("listDocuments", page.getContent());
@@ -57,28 +55,28 @@ public class DocumentController {
 		model.addAttribute("sortDir", sortDir);
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 		model.addAttribute("keyword", keyword);
-		
+
 		return "documents";
 	}
-	
+
 	@GetMapping("/documents/new")
 	public String showCreateNewDocumentForm(Model model) {
 		model.addAttribute("document", new Document());
 		return "document_form";
 	}
-	
+
 	@PostMapping("/documents/save")
 	public String saveDocument(Document document) {
 		documentRepository.save(document);
 		return "redirect:/documents";
 	}
-	
+
 	@GetMapping("/documents/edit/{id}")
 	public String showCreateNewDocumentForm(@PathVariable Integer id, Model model) {
 		model.addAttribute("document", documentRepository.findById(id).get());
 		return "document_form";
 	}
-	
+
 	@GetMapping("/documents/delete/{id}")
 	public String deleteDocument(@PathVariable Integer id) {
 		documentRepository.deleteById(id);
