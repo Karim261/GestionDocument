@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
  <title>NavigationBar</title>
  <meta charset="UTF-8">
@@ -39,13 +39,16 @@
 	     <li class="nav-item">
     	     <a class="nav-link" th:href="@{/type_document}">Type document</a>
 	     </li>
+	    
 
 	  </ul>
 	  </div>
 	  <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-						<li class="nav-item dropdown">
+	  		
+					<li class="nav-item dropdown">
+					<div sec:authorize="isAuthenticated()" >
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<span style="font-size:18px;">⚙</span>️
+							<span style="font-size:18px;">[[${#httpServletRequest.remoteUser}]] ⚙</span>️
 						</a>
 						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
 							<li><a class="dropdown-item" href="#">Sans lien</a></li>
@@ -53,9 +56,16 @@
 							<li><a class="dropdown-item" href="#">Old.Cat</a></li>
 		
 						</ul>
+					</div>
 					</li>
-						<li class="nav-item">
+
+					<li class="nav-item">
+					<div sec:authorize="isAnonymous()">
+						<a  class="nav-link" style="background:#4CAF50;" href="#" th:href="@{/login}">Se connecter</a>
+					</div>
+					<div sec:authorize="isAuthenticated()" >
 						<a  class="nav-link" style="background:#d9534f;" href="#" th:href="@{/logout}">Se déconnecter</a>
+					</div>
 					</li>
 
 					</ul>
