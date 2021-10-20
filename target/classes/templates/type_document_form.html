@@ -15,15 +15,17 @@
 <body>
 	<div th:insert="navbar :: navbar">  </div>
 	<div class="container text-center">
-		<div>
-			<h1 th:if="${document.id == null}">Create New Type</h1>
-			<h1 th:unless="${document.id == null}">Edit Type</h1>
-		</div>
+		<div class="card bg-light mb-3" style="margin-top:20px;">
+			<h3 class="card-header" th:if="${document.id == null}">Ajouter un Type de document</h3>
+			<h3 class="card-header" th:unless="${document.id == null}">Editer le Type de document</h3>
+		<div class="card-body">
+		
 		<form th:action="@{/type_document/save}" th:object="${document}" method="post" style="max-width: 600px; margin: 0 auto;">
+			<div class="form-group">
 			<input type="hidden" th:field="*{id}" th:value="${document.id}">
 			<div class="m-3">
 				<div class="form-group row">
-					<label class="col-form-label col-sm-4">Nom: </label>
+					<label class="col-form-label col-sm-4">Nom:</label>
 					<div class="col-sm-8">
 						<input type="text" th:field="*{nom}" class="form-control" required>
 					</div>
@@ -42,10 +44,15 @@
 				</div>
 
 				<div class="text-center p-3">
-					<button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+					<button type="submit" class="btn btn-primary"><i class="fas fa-save" style="margin-right:10px;"></i> Sauvegarder</button>
 				</div>
 			</div>
+			</div><!-- end form group -->
 		</form>
+		</div> <!-- fin body -->
+				<div class="card-footer text-muted">
+				  </div>
+				</div> <!-- fin card -->
 	</div>
 	<div th:insert="navbar :: footer">  </div>
 </body>
