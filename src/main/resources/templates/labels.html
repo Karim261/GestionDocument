@@ -34,9 +34,9 @@
 			<table class="table table-striped table-bordered">
 				<thead class="thead-dark">
 					<tr>
-						<th style="vertical-align: middle;"><a th:href="@{'/labels/page/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">ID</a></th>
-						<th style="vertical-align: middle;"><a th:href="@{'/labels/page/' + ${currentPage} + '?sortField=nom&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Nom</a></th>
-						<th><a th:href="@{/labels/new}" class="btn btn-primary"><span class="spinner-grow spinner-grow-sm"></span> New</a></th>
+						<th style="vertical-align: middle;"><a class="text-secondary" th:href="@{'/labels/page/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">ID</a></th>
+						<th style="vertical-align: middle;"><a class="text-secondary" th:href="@{'/labels/page/' + ${currentPage} + '?sortField=nom&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Nom</a></th>
+						<th><a th:href="@{/labels/new}" class="btn btn-secondary"><span class="spinner-grow spinner-grow-sm"></span> Nouveau</a></th>
 					</tr>
 				</thead>
 				<tbody>

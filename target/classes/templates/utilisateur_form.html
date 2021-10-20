@@ -15,10 +15,11 @@
 <body>
 	<div th:insert="navbar :: navbar">  </div>
 	<div class="container text-center">
-		<div>
-			<h1 th:if="${utilisateur.id == null}">Create New Utilisateur</h1>
-			<h1 th:unless="${utilisateur.id == null}">Edit Utilisateur</h1>
-		</div>
+		<div class="card bg-light mb-3" style="margin-top:20px;">
+			<h3 class="card-header" th:if="${utilisateur.id == null}">Ajouter un nouvel Utilisateur</h3>
+			<h3 class="card-header" th:unless="${utilisateur.id == null}">Editer l'utilisateur</h3>
+		<div class="card-body">
+		
 		<form th:action="@{/utilisateurs/save}" th:object="${utilisateur}" method="post" style="max-width: 600px; margin: 0 auto;">
 			<input type="hidden" th:field="*{id}" th:value="${utilisateur.id}">
 			<div class="m-3">
@@ -76,10 +77,14 @@
 				</div>
 				
 				<div class="text-center p-3">
-					<button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+					<button type="submit" class="btn btn-primary"><i class="fas fa-save" style="margin-right:10px;"></i> Sauvegarder</button>
 				</div>
 			</div>
 		</form>
+		</div> <!-- fin body -->
+				<div class="card-footer text-muted">
+				  </div>
+				</div> <!-- fin card -->
 	</div>
 	<div th:insert="navbar :: footer">  </div>
 </body>

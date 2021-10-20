@@ -15,10 +15,10 @@
 <body>
 	<div th:insert="navbar :: navbar">  </div>
 	<div class="container text-center">
-		<div>
-			<h1 th:if="${document.id == null}">Create New Document</h1>
-			<h1 th:unless="${document.id == null}">Edit Document</h1>
-		</div>
+		<div class="card bg-light mb-3" style="margin-top:20px;">
+			<h3 class="card-header" th:if="${document.id == null}">Créer un Document</h3>
+			<h3 class="card-header" th:unless="${document.id == null}">Editer le Document</h3>
+		<div class="card-body">
 		<form th:action="@{/documents/save}" th:object="${document}" method="post" style="max-width: 600px; margin: 0 auto;">
 			<input type="hidden" th:field="*{id}" th:value="${document.id}">
 			<div class="m-3">
@@ -70,10 +70,14 @@
 				</div>
 				</th:block>
 				<div class="text-center p-3">
-					<button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+					<button type="submit" class="btn btn-primary"><i class="fas fa-save" style="margin-right:10px;"></i> Sauvegarder</button>
 				</div>
 			</div>
 		</form>
+		</div> <!-- fin body -->
+				<div class="card-footer text-muted">
+				  </div>
+				</div> <!-- fin card -->
 	</div>
 	<div th:insert="navbar :: footer">  </div>
 </body>
