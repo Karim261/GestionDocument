@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gestion.Constants;
 import com.gestion.model.Utilisateur;
 import com.gestion.repository.UtilisateurRepository;
+import com.gestion.repository.RoleRepository;
+
 
 @Controller
 public class UtilisateurController {
@@ -21,6 +23,9 @@ public class UtilisateurController {
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
 
+	@Autowired
+	private RoleRepository roleRepository;
+	
 	@GetMapping("/utilisateurs")
 	public String showUtilisateurList(Model model) {
 		return listByPage(model, 1, "id", "asc", "");
@@ -45,6 +50,7 @@ public class UtilisateurController {
 
 	@GetMapping("/utilisateurs/new")
 	public String showCreateNewUtilisateurForm(Model model) {
+		model.addAttribute("listRoles", roleRepository.findAll());
 		model.addAttribute("utilisateur", new Utilisateur());
 		return "utilisateur_form";
 	}
@@ -58,6 +64,7 @@ public class UtilisateurController {
 
 	@GetMapping("/utilisateurs/edit/{id}")
 	public String showCreateNewUtilisateurForm(@PathVariable Integer id, Model model) {
+		model.addAttribute("listRoles", roleRepository.findAll());
 		model.addAttribute("utilisateur", utilisateurRepository.findById(id).get());
 		return "utilisateur_form";
 	}

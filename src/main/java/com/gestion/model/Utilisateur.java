@@ -1,12 +1,17 @@
 package com.gestion.model;
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Utilisateur {
@@ -32,6 +37,10 @@ public class Utilisateur {
 
 	@Column(nullable = false)
 	private Date dateNaissance;
+	
+	@ManyToMany
+	@JoinTable(name = "role_has_utilisateur", joinColumns = @JoinColumn(name = "utilisateur_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<Role>();
 
 public Utilisateur() {}
 
@@ -100,6 +109,22 @@ public Utilisateur() {}
 
 	public void setDateNaissance(Date dateNaissance) {
 		this.dateNaissance = dateNaissance;
+	}
+	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	public void addRole(Role role) {
+		roles.add(role);
+	}
+	
+	public void removeRole(Role role) {
+		roles.remove(role);
 	}
 
 	@Override
