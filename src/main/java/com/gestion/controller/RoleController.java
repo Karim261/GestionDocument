@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gestion.Constants;
 import com.gestion.model.Role;
 import com.gestion.repository.RoleRepository;
+import com.gestion.repository.UtilisateurRepository;
 
 @Controller
 public class RoleController {
 
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	@Autowired
+	private UtilisateurRepository utilisateurRepository;
 
 	@GetMapping("/roles")
 	public String showRoleList(Model model) {
@@ -45,6 +49,7 @@ public class RoleController {
 
 	@GetMapping("/roles/new")
 	public String showCreateNewRoleForm(Model model) {
+		model.addAttribute("listUtilisateurs", utilisateurRepository.findAll());
 		model.addAttribute("role", new Role());
 		return "role_form";
 	}
@@ -58,6 +63,7 @@ public class RoleController {
 
 	@GetMapping("/roles/edit/{id}")
 	public String showCreateNewRoleForm(@PathVariable Integer id, Model model) {
+		model.addAttribute("listUtilisateurs", utilisateurRepository.findAll());
 		model.addAttribute("role", roleRepository.findById(id).get());
 		return "role_form";
 	}
