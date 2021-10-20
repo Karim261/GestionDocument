@@ -1,11 +1,9 @@
 package com.gestion.model;
 
 import java.sql.Date;
-import java.util.ArrayList;
+
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,8 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import org.springframework.*;
 
 @Entity
 public class Document {
@@ -24,16 +20,16 @@ public class Document {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(nullable = false, columnDefinition = "nvarchar(45)")
 	private String nom;
-	
+
 	@Column(nullable = false)
 	private Date derniere_date_modification;
-	
+
 	@Column(nullable = false)
 	private Long taille_document;
-	
+
 	@Column(nullable = false)
 	private Integer version;
 
@@ -42,16 +38,28 @@ public class Document {
 
 	@Column(nullable = false, columnDefinition = "nvarchar(45)")
 	private String approuve_par;
-	
-//	@ManyToOne
-//	@JoinColumn(name = "type_document_id")
-//	private Type_document type_document;
 
 	
-public Document() {}
+	@ManyToMany
+	@JoinTable(name = "Document_Label", joinColumns = @JoinColumn(name = "document_id"), inverseJoinColumns = @JoinColumn(name = "label_id"))
+	private Set<Label> labels = new HashSet<Label>();
 	
+	@ManyToOne
+	@JoinColumn(name = "typeDocument_id")
+	private TypeDocument typeDocument;
+
+	public TypeDocument getTypeDocument() {
+		return typeDocument;
+	}
+
+	public void setTypeDocument(TypeDocument typeDocument) {
+		this.typeDocument = typeDocument;
+	}
+
+public Document() {}
+
 	public Document(Integer id, String nom, Date derniere_date_modification, Long taille_document, Integer version, Byte document_prive,
-						String approuve_par) {  //String approuve_par, Document_type document_type) {
+						String approuve_par,TypeDocument typeDocument) {  
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -60,9 +68,9 @@ public Document() {}
 		this.version = version;
 		this.document_prive = document_prive;
 		this.approuve_par = approuve_par;
-		//this.document_type = document_type;
+		this.typeDocument = typeDocument;
 	}
-	
+
 
 	public Integer getId() {
 		return id;
@@ -79,7 +87,7 @@ public Document() {}
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-		
+
 	public Date getDerniere_date_modification() {
 		return derniere_date_modification;
 	}
@@ -120,7 +128,21 @@ public Document() {}
 		this.approuve_par = approuve_par;
 	}
 
+	public Set<Label> getLabels() {
+		return labels;
+	}
 
+	public void setLabels(Set<Label> labels) {
+		this.labels = labels;
+	}
+
+	public void addLabel(Label label) {
+		labels.add(label);
+	}
+	
+	public void removeLabel(Label label) {
+		labels.remove(label);
+	}
 
 	@Override
 	public String toString() {

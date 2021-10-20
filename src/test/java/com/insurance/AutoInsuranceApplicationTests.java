@@ -14,5 +14,5 @@ public class AutoInsuranceApplicationTests {
 	@Test
 	public void test() {
 	}
-	
+
 }

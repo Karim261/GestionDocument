@@ -10,6 +10,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sandstone/bootstrap.min.css">
 </head>
 <body>
 	<div th:insert="navbar :: navbar">  </div>
@@ -57,7 +58,17 @@
 						<input type="text" step="0.1" th:field="*{approuve_par}" class="form-control" required>
 					</div>
 				</div>
-
+				<div class="form-group row">
+					<label class="col-form-label col-sm-4">Document Suffixe: </label>
+					<div class="col-sm-8">
+						<select th:field="*{typeDocument}" class="form-control" required>
+							<th:block th:each="typeDocument : ${listTypeDocuments}">
+								<option th:text="${typeDocument.suffixe}" th:value="${suffixe}"/>
+							</th:block>
+						</select>
+					</div>
+				</div>
+				</th:block>
 				<div class="text-center p-3">
 					<button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
 				</div>
