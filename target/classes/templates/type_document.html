@@ -34,11 +34,11 @@
 			<table class="table table-striped table-bordered">
 				<thead class="thead-dark">
 					<tr>
-						<th style="vertical-align: middle;"><a th:href="@{'/type_document/page/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">ID</a></th>
-						<th style="vertical-align: middle;"><a th:href="@{'/type_document/page/' + ${currentPage} + '?sortField=nom&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Nom</a></th>
-						<th style="vertical-align: middle;"><a th:href="@{'/type_document/page/' + ${currentPage} + '?sortField=suffixe&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Suffixe</a></th>
-						<th style="vertical-align: middle;"><a th:href="@{'/type_document/page/' + ${currentPage} + '?sortField=description&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Description</a></th>
-						<th><a th:href="@{/type_document/new}" class="btn btn-primary"><span class="spinner-grow spinner-grow-sm"></span> New</a></th>
+						<th style="vertical-align: middle;"><a class="text-secondary" th:href="@{'/type_document/page/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">ID</a></th>
+						<th style="vertical-align: middle;"><a class="text-secondary" th:href="@{'/type_document/page/' + ${currentPage} + '?sortField=nom&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Nom</a></th>
+						<th style="vertical-align: middle;"><a class="text-secondary" th:href="@{'/type_document/page/' + ${currentPage} + '?sortField=suffixe&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Suffixe</a></th>
+						<th style="vertical-align: middle;"><a class="text-secondary" th:href="@{'/type_document/page/' + ${currentPage} + '?sortField=description&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Description</a></th>
+						<th><a th:href="@{/type_document/new}" class="btn btn-secondary"><span class="spinner-grow spinner-grow-sm"></span> Nouveau</a></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -61,20 +61,26 @@
 		<div>
 			Total Items: [[${totalItems}]] - Page [[${currentPage}]] of [[${totalPages}]]
 			&nbsp; - &nbsp;
-			<a th:if="${currentPage > 1}" th:href="@{/type_document/page/1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">First</a>
+			<ul class="pagination">
+			<li class="page-item">
+			<a class="page-link" th:if="${currentPage > 1}" th:href="@{/type_document/page/1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">First</a>
+			</li>
 			<span th:unless="${currentPage > 1}">First</span>
 			<a th:if="${currentPage > 1}" th:href="@{'/type_document/page/' + ${currentPage - 1}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Previous</a>
 			<span th:unless="${currentPage > 1}">Previous</span>
 			&nbsp;&nbsp;
+			<li class="page-item">
 			<span th:each="i: ${#numbers.sequence(1, totalPages)}">
-				<a th:if="${i != currentPage}" th:href="@{'/type_document/page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">[[${i}]]</a>
+				<a class="page-link" th:if="${i != currentPage}" th:href="@{'/type_document/page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">[[${i}]]</a>
 				<span th:unless="${i != currentPage}">[[${i}]]</span>
 				&nbsp;&nbsp;
 			</span>
+			</li>
 			<a th:if="${currentPage < totalPages}" th:href="@{'/type_document/page/' + ${currentPage + 1}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Next</a>
 			<span th:unless="${currentPage < totalPages}">Next</span>
 			<a th:if="${currentPage < totalPages}" th:href="@{'/type_document/page/' + ${totalPages}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Last</a>
 			<span th:unless="${currentPage < totalPages}">Last</span>
+			</ul>
 		</div>
 	</div>
 	<div th:insert="navbar :: footer">  </div>

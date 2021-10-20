@@ -34,15 +34,15 @@
 			<table class="table table-striped table-bordered">
 				<thead class="thead-dark">
 					<tr>
-						<th style="vertical-align: middle;"><a th:href="@{'/documents/page/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">ID</a></th>
-						<th style="vertical-align: middle;"><a th:href="@{'/documents/page/' + ${currentPage} + '?sortField=nom&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Nom</a></th>
-						<th style="vertical-align: middle;"><a th:href="@{'/documents/page/' + ${currentPage} + '?sortField=derniere_date_modification&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Derniere Date Modification</a></th>
-						<th style="vertical-align: middle;"><a th:href="@{'/documents/page/' + ${currentPage} + '?sortField=taille_document&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Taille Document</a></th>
-						<th style="vertical-align: middle;"><a th:href="@{'/documents/page/' + ${currentPage} + '?sortField=version&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Version</a></th>
-						<th style="vertical-align: middle;"><a th:href="@{'/documents/page/' + ${currentPage} + '?sortField=document_prive&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Document Prive</a></th>
-						<th style="vertical-align: middle;"><a th:href="@{'/documents/page/' + ${currentPage} + '?sortField=approuve_par&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Approuve Par</a></th>
-						<th style="vertical-align: middle;"><a th:href="@{'/documents/page/' + ${currentPage} + '?sortField=typeDocument.suffixe&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Document Type Suffixe</a></th>
-						<th><a th:href="@{/documents/new}" class="btn btn-primary"><span class="spinner-grow spinner-grow-sm"></span> New</a></th>
+						<th style="vertical-align: middle;"><a class="text-secondary" th:href="@{'/documents/page/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">ID</a></th>
+						<th style="vertical-align: middle;"><a class="text-secondary" th:href="@{'/documents/page/' + ${currentPage} + '?sortField=nom&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Nom</a></th>
+						<th style="vertical-align: middle;"><a class="text-secondary" th:href="@{'/documents/page/' + ${currentPage} + '?sortField=derniere_date_modification&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Derniere Date Modification</a></th>
+						<th style="vertical-align: middle;"><a class="text-secondary" th:href="@{'/documents/page/' + ${currentPage} + '?sortField=taille_document&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Taille Document</a></th>
+						<th style="vertical-align: middle;"><a class="text-secondary" th:href="@{'/documents/page/' + ${currentPage} + '?sortField=version&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Version</a></th>
+						<th style="vertical-align: middle;"><a class="text-secondary" th:href="@{'/documents/page/' + ${currentPage} + '?sortField=document_prive&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Document Prive</a></th>
+						<th style="vertical-align: middle;"><a class="text-secondary" th:href="@{'/documents/page/' + ${currentPage} + '?sortField=approuve_par&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Approuve Par</a></th>
+						<th style="vertical-align: middle;"><a class="text-secondary" th:href="@{'/documents/page/' + ${currentPage} + '?sortField=typeDocument.suffixe&sortDir=' + ${reverseSortDir}} + ${keyword != null ? '&keyword=' + keyword : '&keyword='}">Document Type Suffixe</a></th>
+						<th><a th:href="@{/documents/new}" class="btn btn-secondary"><span class="spinner-grow spinner-grow-sm"></span> Nouveau</a></th>
 					</tr>
 				</thead>
 				<tbody>
