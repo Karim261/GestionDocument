@@ -30,7 +30,7 @@ public class Role {
 	private String rolecol;
 
 	@ManyToMany
-	@JoinTable(name = "role_has_utilisateur", joinColumns = @JoinColumn(name = "utilisateur_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JoinTable(name = "role_has_utilisateur", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "utilisateur_id"))
 	private Set<Utilisateur> utilisateurs = new HashSet<Utilisateur>();
 
 public Role() {}
