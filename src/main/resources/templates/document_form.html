@@ -63,7 +63,7 @@
 					<div class="col-sm-8">
 						<select th:field="*{typeDocument}" class="form-control" required>
 							<th:block th:each="typeDocument : ${listTypeDocuments}">
-								<option th:text="${typeDocument.suffixe}" th:value="${suffixe}"/>
+								<option th:text="${typeDocument.suffixe}" th:value="${typeDocument.id}"/>
 							</th:block>
 						</select>
 					</div>
