@@ -81,6 +81,7 @@ public class DocumentController {
 
 	@GetMapping("/documents/edit/{id}")
 	public String showCreateNewDocumentForm(@PathVariable Integer id, Model model) {
+		model.addAttribute("listTypeDocuments", typeDocumentRepository.findAll());
 		model.addAttribute("document", documentRepository.findById(id).get());
 		model.addAttribute("listLabels", labelRepository.findAll());
 		return "document_form";

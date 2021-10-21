@@ -15,13 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gestion.Constants;
 import com.gestion.model.Note;
-import com.gestion.model.TypeDocument;
 import com.gestion.model.Utilisateur;
+import com.gestion.model.Document;
 import com.gestion.repository.NoteRepository;
-import com.gestion.repository.RoleRepository;
-import com.gestion.repository.TypeDocumentRepository;
 import com.gestion.repository.UtilisateurRepository;
-
+import com.gestion.repository.DocumentRepository;
 
 @Controller
 public class NoteController {
@@ -31,6 +29,9 @@ public class NoteController {
 	
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
+	
+	@Autowired
+	private DocumentRepository documentRepository;
 	
 	@GetMapping("/notes")
 	public String showNoteList(Model model) {
@@ -58,6 +59,9 @@ public class NoteController {
 	public String showCreateNewNoteForm(Model model) {
 		model.addAttribute("note", new Note());
 		model.addAttribute("listUtilisateurs", utilisateurRepository.findAll());
+		
+		model.addAttribute("listDocuments", documentRepository.findAll());
+		
 		return "note_form";
 	}
 
@@ -66,12 +70,18 @@ public class NoteController {
 		int last = utilisateurRepository.findAll().size();
 		Utilisateur p = utilisateurRepository.findAll().get(last-1);
 		note.setUtilisateur(p);
+		
+		int last2 = documentRepository.findAll().size();
+		Document p2 = documentRepository.findAll().get(last2-1);
+		note.setDocument(p2);
+		
 		noteRepository.save(note);
 		return "redirect:/notes";
 	}
 
 	@GetMapping("/notes/edit/{id}")
 	public String showCreateNewNoteForm(@PathVariable Integer id, Model model) {
+		model.addAttribute("listUtilisateurs", utilisateurRepository.findAll());
 		model.addAttribute("note", noteRepository.findById(id).get());
 		return "note_form";
 	}

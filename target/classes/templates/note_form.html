@@ -49,7 +49,7 @@
 					<div class="col-sm-8">
 						<select th:field="*{utilisateur}" class="form-control" required>
 							<th:block th:each="utilisateur : ${listUtilisateurs}">
-								<option th:text="${utilisateur.nomUtilisateur}" th:value="${nomUtilisateur}"/>
+								<option th:text="${utilisateur.nomUtilisateur}" th:value="${utilisateur.id}"/>
 							</th:block>
 						</select>
 					</div>

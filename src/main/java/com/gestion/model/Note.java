@@ -41,16 +41,30 @@ public class Note {
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
+	
+	@ManyToOne
+	@JoinColumn(name = "document_id")
+	private Document document;
+
+	public Document getDocument() {
+		return document;
+	}
+
+	public void setDocument(Document document) {
+		this.document = document;
+	}
+	
 
 public Note() {}
 
-public Note(Integer id, String sujet, String texte, Date deniereModification,Utilisateur utilisateur) {  
+public Note(Integer id, String sujet, String texte, Date deniereModification,Utilisateur utilisateur,Document document) {  
 super();
 this.id = id;
 this.sujet = sujet;
 this.texte = texte;
 this.deniereModification = deniereModification;
 this.utilisateur = utilisateur;
+this.document = document;
 }
 
 	public Note(Integer id) {
