@@ -43,13 +43,22 @@
 						<input type="date" th:field="*{deniereModification}" class="form-control" required>
 					</div>
 				</div>
-				
 				<div class="form-group row">
 					<label class="col-form-label col-sm-4">Nom Utilisateur: </label>
 					<div class="col-sm-8">
 						<select th:field="*{utilisateur}" class="form-control" required>
 							<th:block th:each="utilisateur : ${listUtilisateurs}">
 								<option th:text="${utilisateur.nomUtilisateur}" th:value="${utilisateur.id}"/>
+							</th:block>
+						</select>
+					</div>
+				</div>
+					<div class="form-group row">
+					<label class="col-form-label col-sm-4">Nom Document: </label>
+					<div class="col-sm-8">
+						<select th:field="*{utilisateur}" class="form-control" required>
+							<th:block th:each="document : ${listDocuments}">
+								<option th:text="${document.nom}" th:value="${document.id}"/>
 							</th:block>
 						</select>
 					</div>

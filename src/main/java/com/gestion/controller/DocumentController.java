@@ -66,6 +66,8 @@ public class DocumentController {
 	public String showCreateNewDocumentForm(Model model) {
 		model.addAttribute("document", new Document());
 		model.addAttribute("listLabels", labelRepository.findAll());
+		model.addAttribute("listCategories", categorieRepository.findAll());
+		model.addAttribute("listUtilisateurs", utilisateurRepository.findAll());
 		model.addAttribute("listTypeDocuments", typeDocumentRepository.findAll());
 		return "document_form";
 	}
@@ -81,8 +83,9 @@ public class DocumentController {
 
 	@GetMapping("/documents/edit/{id}")
 	public String showCreateNewDocumentForm(@PathVariable Integer id, Model model) {
-		model.addAttribute("listTypeDocuments", typeDocumentRepository.findAll());
 		model.addAttribute("document", documentRepository.findById(id).get());
+		model.addAttribute("listTypeDocuments", typeDocumentRepository.findAll());
+		model.addAttribute("listUtilisateurs", utilisateurRepository.findAll());
 		model.addAttribute("listLabels", labelRepository.findAll());
 		return "document_form";
 	}

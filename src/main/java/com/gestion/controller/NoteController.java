@@ -58,8 +58,7 @@ public class NoteController {
 	@GetMapping("/notes/new")
 	public String showCreateNewNoteForm(Model model) {
 		model.addAttribute("note", new Note());
-		model.addAttribute("listUtilisateurs", utilisateurRepository.findAll());
-		
+		model.addAttribute("listUtilisateurs", utilisateurRepository.findAll());	
 		model.addAttribute("listDocuments", documentRepository.findAll());
 		
 		return "note_form";
@@ -81,8 +80,9 @@ public class NoteController {
 
 	@GetMapping("/notes/edit/{id}")
 	public String showCreateNewNoteForm(@PathVariable Integer id, Model model) {
-		model.addAttribute("listUtilisateurs", utilisateurRepository.findAll());
 		model.addAttribute("note", noteRepository.findById(id).get());
+		model.addAttribute("listUtilisateurs", utilisateurRepository.findAll());
+		model.addAttribute("listDocuments", documentRepository.findAll());
 		return "note_form";
 	}
 
