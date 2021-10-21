@@ -52,6 +52,23 @@ public Label() {}
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
+	
+	public Set<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(Set<Document> documents) {
+		this.documents = documents;
+	}
+
+	public void addDocument(Document document) {
+		documents.add(document);
+	}
+	
+	public void removeDocument(Document document) {
+		documents.remove(document);
+	}
 
 
 	@Override
