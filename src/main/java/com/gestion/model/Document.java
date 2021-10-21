@@ -41,7 +41,7 @@ public class Document {
 
 	
 	@ManyToMany
-	@JoinTable(name = "Document_Label", joinColumns = @JoinColumn(name = "document_id"), inverseJoinColumns = @JoinColumn(name = "label_id"))
+	@JoinTable(name = "Document_has_Label", joinColumns = @JoinColumn(name = "document_id"), inverseJoinColumns = @JoinColumn(name = "label_id"))
 	private Set<Label> labels = new HashSet<Label>();
 	
 	@ManyToOne

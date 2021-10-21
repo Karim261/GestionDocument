@@ -1,10 +1,16 @@
 package com.gestion.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Label {
@@ -15,6 +21,10 @@ public class Label {
 
 	@Column(nullable = false, columnDefinition = "nvarchar(45)")
 	private String nom;
+	
+	@ManyToMany
+	@JoinTable(name = "Label_has_Document", joinColumns = @JoinColumn(name = "label_id"), inverseJoinColumns = @JoinColumn(name = "document_id"))
+	private Set<Document> documents = new HashSet<Document>();
 
 
 public Label() {}

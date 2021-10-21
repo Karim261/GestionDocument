@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gestion.Constants;
 import com.gestion.model.Label;
+import com.gestion.repository.DocumentRepository;
 import com.gestion.repository.LabelRepository;
 import com.gestion.repository.UtilisateurRepository;
-//import com.gestion.repository.TypeDocumentRepository;
-//import com.gestion.repository.LabelRepository;
-//import com.gestion.repository.LabelRepository;
+import com.gestion.repository.DocumentRepository;
 
 @Controller
 public class LabelController {
@@ -25,14 +24,9 @@ public class LabelController {
 	@Autowired
 	private LabelRepository labelRepository;
 
-//	@Autowired
-//	private TypeDocumentRepository typeDocumentRepository;
-//
-//	@Autowired
-//	private LabelRepository labelRepository;
-//
-//	@Autowired
-//	private LabelRepository labelRepository;
+	@Autowired
+	private DocumentRepository documentRepository;
+
 
 	@GetMapping("/labels")
 	public String showLabelList(Model model) {
@@ -59,17 +53,20 @@ public class LabelController {
 	@GetMapping("/labels/new")
 	public String showCreateNewLabelForm(Model model) {
 		model.addAttribute("label", new Label());
+		model.addAttribute("listDocuments", documentRepository.findAll());
 		return "label_form";
 	}
 
 	@PostMapping("/labels/save")
 	public String saveLabel(Label label) {
+		
 		labelRepository.save(label);
 		return "redirect:/labels";
 	}
 
 	@GetMapping("/labels/edit/{id}")
 	public String showCreateNewLabelForm(@PathVariable Integer id, Model model) {
+		model.addAttribute("listLabels", labelRepository.findAll());
 		model.addAttribute("label", labelRepository.findById(id).get());
 		return "label_form";
 	}
